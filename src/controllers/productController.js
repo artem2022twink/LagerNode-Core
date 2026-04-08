@@ -10,8 +10,7 @@ const getAllProducts = async (req, res) => {
         const data = JSON.parse(rawData);
         res.json(data.products);
     } catch (error) {
-        console.error('Ошибка');
-        res.status(500).json({ error: 'Database erorr' });
+        res.status(500).json({ error: "Database erorr" });
     }
 };
 
@@ -24,14 +23,32 @@ const getProductById = async (req, res) => {
         if (product) {
             res.json(product)
         } else {
-            res.status(404).json({ error: 'Product not found' });
+            res.status(404).json({ error: "Product not found" });
         };
     } catch (erorr) {
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: "Server error" });
+    }
+};
+
+const getProductByCategory = async (req, res) => {
+    try {
+        const rawData = await fs.readFile(DB_PATH, 'utf-8');
+        const data = JSON.parse(rawData);
+        const categoryFromUrl = req.params.category;
+        const filteredProducts = data.products.filter(p => p.category === categoryFromUrl.toLowerCase());
+
+        if (filteredProducts.length > 0) {
+            res.json(filteredProducts);
+        } else {
+            res.status(404).json({ error: "Category is empty" });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Category find error" });
     }
 };
 
 module.exports = {
     getAllProducts,
-    getProductById
+    getProductById,
+    getProductByCategory
 };
