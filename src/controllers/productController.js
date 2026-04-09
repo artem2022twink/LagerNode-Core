@@ -47,41 +47,6 @@ const getProductByCategory = async (req, res) => {
     }
 };
 
-const filterCategoryByPrice = async (req, res) => {
-    try {
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        const categoryFromUrl = req.params.category;
-        const filteredProducts = data.products
-            .filter(p => p.category.toLowerCase() === categoryFromUrl.toLowerCase())
-            .filter(p => p.price <= parseInt(req.params.price));
-
-        if (filteredProducts.length > 0) {
-            res.json(filteredProducts);
-        } else {
-            res.status(404).json({ error: "These products are not available" })
-        }
-    } catch (error) {
-        res.status(500).json({ erorr: "Server error" });
-    }
-};
-
-const filterAllByPrice = async (req, res) => {
-    try {
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        const filteredProducts = data.products.filter(p => p.price <= parseInt(req.params.price));
-
-        if (filteredProducts.length > 0) {
-            res.json(filteredProducts);
-        } else {
-            res.status(404).json({ error: "These products are not available" });
-        }
-    } catch (error) {
-        res.status(500).json({ error: "Server error" });
-    }
-};
-
 const lowStock = async (req, res) => {
     try {
         const rawData = await fs.readFile(DB_PATH, 'utf-8');
@@ -114,12 +79,50 @@ const searchProducts = async (req, res) => {
     }
 };
 
+filterByPriceRange = async (req, res) => {
+    try {
+        
+        const rawData = await fs.readFile(DB_PATH, 'utf-8');
+        const data = JSON.parse(rawData);
+        
+        if (req.params.min === undefined || req.params.max === undefined) {
+            res.status(400).json({ error: "Min and max price are required" });
+        }
+        
+        const min = parseFloat(req.params.min);
+        const max = parseFloat(req.params.max);
+        
+        if (isNaN(min) || isNaN(max)) {
+            res.status(400).json({ error: "Invalid price format"});
+        }
+
+        const categoryFromUrl = req.params.category 
+            ? req.params.category.toLowerCase() 
+            : '';
+
+        let filteredProducts = data.products.filter(p => p.price >= min && p.price <= max);
+
+        if (categoryFromUrl !== '') {
+            filteredProducts = filteredProducts.filter(p => p.category.toLowerCase() === categoryFromUrl);
+        };
+
+        if (filteredProducts.length > 0) {
+            res.json(filteredProducts);
+        } else {
+            res.status(404).json({ error: "These products are not available" });
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
+};
+
 module.exports = {
     getAllProducts,
     getProductById,
     getProductByCategory,
-    filterCategoryByPrice,
-    filterAllByPrice,
     lowStock,
-    searchProducts
+    searchProducts,
+    filterByPriceRange
 };

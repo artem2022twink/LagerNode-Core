@@ -9,12 +9,12 @@ router.get('/id/:id', productController.getProductById);
 
 router.get('/category/:category', productController.getProductByCategory);
 
-router.get('/category/:category/price/:price', productController.filterCategoryByPrice);
-
-router.get('/price/:price', productController.filterAllByPrice);
-
 router.get('/low-stock/:amount', productController.lowStock);
 
 router.get('/search/:name', productController.searchProducts);
+
+router.get('/price-range/:min/:max', productController.filterByPriceRange);
+
+router.get('/price-range/:min/:max/:category', productController.filterByPriceRange);
 
 module.exports = router;
