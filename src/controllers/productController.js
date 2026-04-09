@@ -82,10 +82,27 @@ const filterAllByPrice = async (req, res) => {
     }
 };
 
+const lowStock = async (req, res) => {
+    try {
+        const rawData = await fs.readFile(DB_PATH, 'utf-8');
+        const data = JSON.parse(rawData);
+        const filteredProducts = data.products.filter(p => p.stock <= parseInt(req.params.amount));
+
+        if (filteredProducts.length > 0) {
+            res.json(filteredProducts);
+        } else {
+            res.status(404).json({ error: "These products are not available" })
+        }
+    } catch (erorr) {
+        res.status(500).json({ error: "Server error" });
+    }
+};
+
 module.exports = {
     getAllProducts,
     getProductById,
     getProductByCategory,
     filterCategoryByPrice,
-    filterAllByPrice
+    filterAllByPrice,
+    lowStock
 };
