@@ -15,4 +15,6 @@ router.get('/price/:price', productController.filterAllByPrice);
 
 router.get('/low-stock/:amount', productController.lowStock);
 
+router.get('/search/:name', productController.searchProducts);
+
 module.exports = router;
