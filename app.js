@@ -16,8 +16,6 @@ app.get('/', (req, res) => {
 
 app.use('/products', productRoutes);
 
-app.use('/products/category', productRoutes);
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

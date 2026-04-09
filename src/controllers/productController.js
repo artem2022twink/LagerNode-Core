@@ -47,8 +47,45 @@ const getProductByCategory = async (req, res) => {
     }
 };
 
+const filterCategoryByPrice = async (req, res) => {
+    try {
+        const rawData = await fs.readFile(DB_PATH, 'utf-8');
+        const data = JSON.parse(rawData);
+        const categoryFromUrl = req.params.category;
+        const filteredProducts = data.products
+            .filter(p => p.category.toLowerCase() === categoryFromUrl.toLowerCase())
+            .filter(p => p.price <= parseInt(req.params.price));
+
+        if (filteredProducts.length > 0) {
+            res.json(filteredProducts);
+        } else {
+            res.status(404).json({ error: "These products are not available" })
+        }
+    } catch (error) {
+        res.status(500).json({ erorr: "Server error" });
+    }
+};
+
+const filterAllByPrice = async (req, res) => {
+    try {
+        const rawData = await fs.readFile(DB_PATH, 'utf-8');
+        const data = JSON.parse(rawData);
+        const filteredProducts = data.products.filter(p => p.price <= parseInt(req.params.price));
+
+        if (filteredProducts.length > 0) {
+            res.json(filteredProducts);
+        } else {
+            res.status(404).json({ error: "These products are not available" });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Server error" });
+    }
+};
+
 module.exports = {
     getAllProducts,
     getProductById,
-    getProductByCategory
+    getProductByCategory,
+    filterCategoryByPrice,
+    filterAllByPrice
 };
