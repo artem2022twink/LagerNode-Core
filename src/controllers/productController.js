@@ -1,99 +1,134 @@
 const fs = require('fs').promises;
-const { error } = require('console');
 const path = require('path');
 
 const DB_PATH = path.join(__dirname, '../../data', 'dataBase.json');
 
+const readDB = async () => {
+    const rawData = await fs.readFile(DB_PATH, 'utf-8');
+    return JSON.parse(rawData);
+};
+
 const getAllProducts = async (req, res) => {
     try {
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        res.json(data.products);
+        const data = await readDB();
+        return res.json(data.products);
     } catch (error) {
-        res.status(500).json({ error: "Database erorr" });
+        return res.status(500).json({ error: "Database error" });
     }
 };
 
 const getProductById = async (req, res) => {
     try {
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        const product = data.products.find(p => p.id === parseInt(req.params.id));
+        const data = await readDB();
+
+        if (!req.params.id) {
+            return res.status(400).json({ error: "Product id is required" });
+        };
+
+        const id = Number(req.params.id);
+
+        if (Number.isNaN(id)) {
+            return res.status(400).json({ error: "Invalid product id" });
+        };
+
+        if (!Number.isInteger(id) || id <= 0) {
+            return res.status(400).json({ error: "Invalid product id" })
+        };
+        
+        const product = data.products.find(p => p.id === id);
 
         if (product) {
-            res.json(product)
+            return res.json(product)
         } else {
-            res.status(404).json({ error: "Product not found" });
+            return res.status(404).json({ error: "Product not found" });
         };
-    } catch (erorr) {
-        res.status(500).json({ error: "Server error" });
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
     }
 };
 
 const getProductByCategory = async (req, res) => {
     try {
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        const categoryFromUrl = req.params.category;
-        const filteredProducts = data.products.filter(p => p.category === categoryFromUrl.toLowerCase());
+        const data = await readDB();
+        
+        if (!req.params.category) {
+            return res.status(400).json({ error: "Category is required" });
+        }
+        
+        const categoryFromUrl = req.params.category.toLowerCase()
+        const filteredProducts = data.products.filter(p => p.category.toLowerCase() === categoryFromUrl);
 
         if (filteredProducts.length > 0) {
-            res.json(filteredProducts);
+            return res.json(filteredProducts);
         } else {
-            res.status(404).json({ error: "Category is empty" });
+            return res.status(404).json({ error: "No products found for this category" });
         }
     } catch (error) {
-        res.status(500).json({ error: "Category find error" });
+        return res.status(500).json({ error: "Internal server error" });
     }
 };
 
 const lowStock = async (req, res) => {
     try {
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        const filteredProducts = data.products.filter(p => p.stock <= parseInt(req.params.amount));
+        const data = await readDB();
+        
+        if (!req.params.amount) {
+            return res.status(400).json({ error: "Amount is required" });
+        };
+        
+        const amount = Number(req.params.amount);
+
+        if (Number.isNaN(amount) || amount < 0) {
+            return res.status(400).json({ error: "Invalid amount" });
+        };
+
+        const filteredProducts = data.products.filter(p => p.stock <= amount);
 
         if (filteredProducts.length > 0) {
-            res.json(filteredProducts);
+            return res.json(filteredProducts);
         } else {
-            res.status(404).json({ error: "These products are not available" })
+            return res.status(404).json({ error: "No products found" })
         }
-    } catch (erorr) {
-        res.status(500).json({ error: "Server error" });
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
     }
 };
 
 const searchProducts = async (req, res) => {
     try {
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        const searchedProducts = data.products.filter(p => p.name.toLowerCase().includes((req.params.name || '').toLowerCase()));
+        const data = await readDB();
+        
+        if (!req.params.name) {
+            return res.status(400).json({ error: "Search query is required" });
+        }
+
+        const requestFromUrl = req.params.name.toLowerCase();
+        
+        const searchedProducts = data.products.filter(p => p.name.toLowerCase().includes(requestFromUrl));
 
         if (searchedProducts.length > 0) {
-            res.json(searchedProducts);
+            return res.json(searchedProducts);
         } else {
-            res.status(404).json({ error: "These products are not available" });
+            return res.status(404).json({ error: "No products found" });
         }
     } catch (error) {
-        res.status(500).json({ error: "Server error" });
+        return res.status(500).json({ error: "Internal server error" });
     }
 };
 
-filterByPriceRange = async (req, res) => {
+const filterByPriceRange = async (req, res) => {
     try {
+        const data = await readDB();
         
-        const rawData = await fs.readFile(DB_PATH, 'utf-8');
-        const data = JSON.parse(rawData);
-        
-        if (req.params.min === undefined || req.params.max === undefined) {
-            res.status(400).json({ error: "Min and max price are required" });
+        if (req.params.min == null || req.params.max == null) {
+            return res.status(400).json({ error: "Min and max price are required" });
         }
         
         const min = parseFloat(req.params.min);
         const max = parseFloat(req.params.max);
         
         if (isNaN(min) || isNaN(max)) {
-            res.status(400).json({ error: "Invalid price format"});
+            return res.status(400).json({ error: "Invalid price format" });
         }
 
         const categoryFromUrl = req.params.category 
@@ -107,14 +142,14 @@ filterByPriceRange = async (req, res) => {
         };
 
         if (filteredProducts.length > 0) {
-            res.json(filteredProducts);
+            return res.json(filteredProducts);
         } else {
-            res.status(404).json({ error: "These products are not available" });
+            return res.status(404).json({ error: "No products found" });
         }
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Server error" });
+        return res.status(500).json({ error: "Internal server error" });
     }
 };
 
