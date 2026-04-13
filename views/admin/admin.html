@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LagerNode Core Administrator Dashboard</title>
+    <link rel="stylesheet" href="/admin/admin-styles/administrator-dashboard.css">
+    <link rel="shortcut icon" href="/media/gear_settings_icon_176361.ico" type="image/x-icon">
+</head>
+<body>
+    <header id="admin-header">
+        <h1>Welcome to the LagerNode Core Administrator Dashboard</h1>
+        <p id="admin-subtitle">Admin UI for the LagerNode Core API (default port: 3000).</p>
+    </header>
+
+    <main id="admin-main">
+        <section id="section-products-read" class="section">
+
+            <div class="grid">
+                <article id="card-products-all" class="card">
+                    <h3 class="card-title">Get all products</h3>
+                    <button id="btn-products-get-all" type="button">Get all products</button>
+                </article>
+
+                <article id="card-products-by-id" class="card">
+                    <h3 class="card-title">Get product by ID</h3>
+                    <p class="card-hint">ID must be an integer greater than 0.</p>
+
+                    <label for="input-product-id">Product ID</label>
+                    <input
+                        id="input-product-id"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                    >
+
+                    <button id="btn-products-get-by-id" type="button">Get product</button>
+                </article>
+
+                <article id="card-products-by-category" class="card">
+                    <h3 class="card-title">Get products by category</h3>
+
+                    <label for="select-category-read">Category</label>
+                    <select id="select-category-read">
+                        <option value="" selected>Select a category</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="audio">Audio</option>
+                        <option value="camera">Camera</option>
+                        <option value="cables">Cables</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="lighting">Lighting</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="monitors">Monitors</option>
+                        <option value="network">Network</option>
+                        <option value="power">Power</option>
+                        <option value="storage">Storage</option>
+                        <option value="video">Video</option>
+                        <option value="wearables">Wearables</option>
+                    </select>
+
+                    <button id="btn-products-get-by-category" type="button">Get products</button>
+                </article>
+
+                <article id="card-products-low-stock" class="card">
+                    <h3 class="card-title">Get products by stock threshold</h3>
+                    <p class="card-hint">Returns products where stock is less than or equal to the value.</p>
+
+                    <label for="input-stock-threshold">Stock threshold</label>
+                    <input
+                        id="input-stock-threshold"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                    >
+
+                    <button id="btn-products-get-low-stock" type="button">Get products</button>
+                </article>
+
+                <article id="card-products-search" class="card">
+                    <h3 class="card-title">Search products by name</h3>
+                    <p class="card-hint">Case-insensitive substring search.</p>
+
+                    <label for="input-search-name">Search query</label>
+                    <input id="input-search-name" type="text" autocomplete="off">
+
+                    <button id="btn-products-search" type="button">Search</button>
+                </article>
+
+                <article id="card-products-price-range" class="card">
+                    <h3 class="card-title">Filter by price range</h3>
+                    <p class="card-hint">Optional: add a category filter.</p>
+
+                    <div class="row">
+                        <div class="field">
+                            <label for="input-price-min">Min price</label>
+                            <input id="input-price-min" type="number" min="0" step="1" inputmode="numeric">
+                        </div>
+                        <div class="field">
+                            <label for="input-price-max">Max price</label>
+                            <input id="input-price-max" type="number" min="0" step="1" inputmode="numeric">
+                        </div>
+                    </div>
+
+                    <label for="select-category-price">Category (optional)</label>
+                    <select id="select-category-price">
+                        <option value="" selected>All categories</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="audio">Audio</option>
+                        <option value="camera">Camera</option>
+                        <option value="cables">Cables</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="lighting">Lighting</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="monitors">Monitors</option>
+                        <option value="network">Network</option>
+                        <option value="power">Power</option>
+                        <option value="storage">Storage</option>
+                        <option value="video">Video</option>
+                        <option value="wearables">Wearables</option>
+                    </select>
+
+                    <button id="btn-products-filter-price-range" type="button">Get products</button>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

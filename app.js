@@ -1,17 +1,20 @@
 const express = require('express');
-const fs = require('fs').promises;
 const path = require('path');
 
 const productRoutes = require('./src/routes/productRoutes');
 
 const app = express();
 const PORT = 3000;
-const DB_PATH = path.join(__dirname, 'data', 'dataBase.json');
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.send('LagerNode Core is online.');
+    res.sendFile(path.join(__dirname, 'views', 'user', 'index.html'));
+});
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'admin', 'admin.html'));
 });
 
 app.use('/products', productRoutes);
