@@ -1,84 +1,425 @@
 {
-    "products": [
-        { "id": 1, "name": "Laptop Dell Inspiron 15", "category": "laptops", "stock": 25, "price": 899 },
-        { "id": 2, "name": "HP Pavilion Laptop", "category": "laptops", "stock": 18, "price": 799 },
-        { "id": 3, "name": "Lenovo ThinkPad E14", "category": "laptops", "stock": 12, "price": 999 },
-
-        { "id": 4, "name": "Apple Magic Mouse", "category": "accessories", "stock": 40, "price": 99 },
-        { "id": 5, "name": "Logitech MX Master 3", "category": "accessories", "stock": 35, "price": 129 },
-        { "id": 6, "name": "Mechanical Keyboard Redragon", "category": "accessories", "stock": 22, "price": 75 },
-        { "id": 7, "name": "Razer BlackWidow Keyboard", "category": "accessories", "stock": 15, "price": 150 },
-
-        { "id": 8, "name": "Samsung 24 Monitor", "category": "monitors", "stock": 30, "price": 199 },
-        { "id": 9, "name": "LG Ultrawide Monitor", "category": "monitors", "stock": 10, "price": 349 },
-        { "id": 10, "name": "Acer Gaming Monitor", "category": "monitors", "stock": 14, "price": 279 },
-
-        { "id": 11, "name": "USB-C Cable", "category": "cables", "stock": 100, "price": 12 },
-        { "id": 12, "name": "HDMI Cable", "category": "cables", "stock": 80, "price": 15 },
-        { "id": 13, "name": "Ethernet Cable", "category": "cables", "stock": 70, "price": 10 },
-
-        { "id": 14, "name": "Power Bank Xiaomi", "category": "power", "stock": 45, "price": 29 },
-        { "id": 15, "name": "Anker Power Bank", "category": "power", "stock": 38, "price": 39 },
-        { "id": 16, "name": "iPhone Charger", "category": "power", "stock": 55, "price": 25 },
-        { "id": 17, "name": "Samsung Charger", "category": "power", "stock": 50, "price": 22 },
-        { "id": 18, "name": "Wireless Charger", "category": "power", "stock": 30, "price": 35 },
-
-        { "id": 19, "name": "Bluetooth Speaker JBL", "category": "audio", "stock": 20, "price": 79 },
-        { "id": 20, "name": "Sony Headphones", "category": "audio", "stock": 16, "price": 199 },
-
-        { "id": 21, "name": "Gaming Mouse Pad", "category": "accessories", "stock": 60, "price": 20 },
-
-        { "id": 22, "name": "Office Chair", "category": "furniture", "stock": 8, "price": 180 },
-        { "id": 23, "name": "Gaming Chair", "category": "furniture", "stock": 6, "price": 250 },
-        { "id": 24, "name": "Standing Desk", "category": "furniture", "stock": 5, "price": 400 },
-        { "id": 25, "name": "Wooden Desk", "category": "furniture", "stock": 7, "price": 220 },
-
-        { "id": 26, "name": "LED Desk Lamp", "category": "lighting", "stock": 40, "price": 30 },
-        { "id": 27, "name": "Smart Lamp", "category": "lighting", "stock": 25, "price": 55 },
-
-        { "id": 28, "name": "USB Hub", "category": "accessories", "stock": 35, "price": 28 },
-        { "id": 29, "name": "External SSD 1TB", "category": "storage", "stock": 18, "price": 120 },
-        { "id": 30, "name": "External HDD 2TB", "category": "storage", "stock": 22, "price": 95 },
-
-        { "id": 31, "name": "Microphone Blue Yeti", "category": "audio", "stock": 12, "price": 140 },
-        { "id": 32, "name": "Webcam Logitech", "category": "video", "stock": 20, "price": 85 },
-        { "id": 33, "name": "Tripod Stand", "category": "video", "stock": 25, "price": 35 },
-        { "id": 34, "name": "Ring Light", "category": "lighting", "stock": 30, "price": 40 },
-
-        { "id": 35, "name": "Router TP-Link", "category": "network", "stock": 18, "price": 60 },
-        { "id": 36, "name": "Router Asus", "category": "network", "stock": 12, "price": 110 },
-        { "id": 37, "name": "Network Switch", "category": "network", "stock": 15, "price": 70 },
-
-        { "id": 38, "name": "UPS Power Supply", "category": "power", "stock": 9, "price": 150 },
-        { "id": 39, "name": "Surge Protector", "category": "power", "stock": 45, "price": 18 },
-        { "id": 40, "name": "Extension Cable", "category": "power", "stock": 50, "price": 14 },
-
-        { "id": 41, "name": "Tablet Samsung", "category": "mobile", "stock": 10, "price": 320 },
-        { "id": 42, "name": "iPad 10th Gen", "category": "mobile", "stock": 8, "price": 450 },
-        { "id": 43, "name": "Smartphone Xiaomi", "category": "mobile", "stock": 20, "price": 250 },
-        { "id": 44, "name": "Smartphone iPhone 13", "category": "mobile", "stock": 6, "price": 750 },
-
-        { "id": 45, "name": "Smartwatch Apple", "category": "wearables", "stock": 12, "price": 399 },
-        { "id": 46, "name": "Smartwatch Samsung", "category": "wearables", "stock": 15, "price": 299 },
-        { "id": 47, "name": "Fitness Tracker", "category": "wearables", "stock": 28, "price": 60 },
-
-        { "id": 48, "name": "VR Headset", "category": "gaming", "stock": 5, "price": 500 },
-        { "id": 49, "name": "Gaming Controller", "category": "gaming", "stock": 20, "price": 70 },
-        { "id": 50, "name": "PlayStation 5", "category": "gaming", "stock": 4, "price": 550 },
-        { "id": 51, "name": "Xbox Series X", "category": "gaming", "stock": 4, "price": 520 },
-        { "id": 52, "name": "Nintendo Switch", "category": "gaming", "stock": 10, "price": 300 },
-
-        { "id": 53, "name": "Cooling Pad Laptop", "category": "accessories", "stock": 18, "price": 35 },
-        { "id": 54, "name": "Laptop Bag", "category": "accessories", "stock": 30, "price": 40 },
-        { "id": 55, "name": "Backpack Tech", "category": "accessories", "stock": 22, "price": 55 },
-
-        { "id": 56, "name": "Camera Canon", "category": "camera", "stock": 6, "price": 650 },
-        { "id": 57, "name": "Camera Sony", "category": "camera", "stock": 5, "price": 720 },
-        { "id": 58, "name": "Lens 50mm", "category": "camera", "stock": 12, "price": 200 },
-        { "id": 59, "name": "Lens 85mm", "category": "camera", "stock": 8, "price": 350 },
-
-        { "id": 60, "name": "Memory Card 128GB", "category": "storage", "stock": 60, "price": 25 }
-    ],
-
-    "orders": []
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop Dell Inspiron 15",
+      "category": "laptops",
+      "stock": 25,
+      "price": 899
+    },
+    {
+      "id": 2,
+      "name": "HP Pavilion Laptop",
+      "category": "laptops",
+      "stock": 18,
+      "price": 799
+    },
+    {
+      "id": 3,
+      "name": "Lenovo ThinkPad E14",
+      "category": "laptops",
+      "stock": 12,
+      "price": 999
+    },
+    {
+      "id": 4,
+      "name": "Apple Magic Mouse",
+      "category": "accessories",
+      "stock": 40,
+      "price": 99
+    },
+    {
+      "id": 5,
+      "name": "Logitech MX Master 3",
+      "category": "accessories",
+      "stock": 35,
+      "price": 129
+    },
+    {
+      "id": 6,
+      "name": "Mechanical Keyboard Redragon",
+      "category": "accessories",
+      "stock": 22,
+      "price": 75
+    },
+    {
+      "id": 7,
+      "name": "Razer BlackWidow Keyboard",
+      "category": "accessories",
+      "stock": 15,
+      "price": 150
+    },
+    {
+      "id": 8,
+      "name": "Samsung 24 Monitor",
+      "category": "monitors",
+      "stock": 30,
+      "price": 199
+    },
+    {
+      "id": 9,
+      "name": "LG Ultrawide Monitor",
+      "category": "monitors",
+      "stock": 10,
+      "price": 349
+    },
+    {
+      "id": 10,
+      "name": "Acer Gaming Monitor",
+      "category": "monitors",
+      "stock": 14,
+      "price": 279
+    },
+    {
+      "id": 11,
+      "name": "USB-C Cable",
+      "category": "cables",
+      "stock": 100,
+      "price": 12
+    },
+    {
+      "id": 12,
+      "name": "HDMI Cable",
+      "category": "cables",
+      "stock": 80,
+      "price": 15
+    },
+    {
+      "id": 13,
+      "name": "Ethernet Cable",
+      "category": "cables",
+      "stock": 70,
+      "price": 10
+    },
+    {
+      "id": 14,
+      "name": "Power Bank Xiaomi",
+      "category": "power",
+      "stock": 45,
+      "price": 29
+    },
+    {
+      "id": 15,
+      "name": "Anker Power Bank",
+      "category": "power",
+      "stock": 38,
+      "price": 39
+    },
+    {
+      "id": 16,
+      "name": "iPhone Charger",
+      "category": "power",
+      "stock": 55,
+      "price": 25
+    },
+    {
+      "id": 17,
+      "name": "Samsung Charger",
+      "category": "power",
+      "stock": 50,
+      "price": 22
+    },
+    {
+      "id": 18,
+      "name": "Wireless Charger",
+      "category": "power",
+      "stock": 30,
+      "price": 35
+    },
+    {
+      "id": 19,
+      "name": "Bluetooth Speaker JBL",
+      "category": "audio",
+      "stock": 20,
+      "price": 79
+    },
+    {
+      "id": 20,
+      "name": "Sony Headphones",
+      "category": "audio",
+      "stock": 16,
+      "price": 199
+    },
+    {
+      "id": 21,
+      "name": "Gaming Mouse Pad",
+      "category": "accessories",
+      "stock": 60,
+      "price": 20
+    },
+    {
+      "id": 22,
+      "name": "Office Chair",
+      "category": "furniture",
+      "stock": 8,
+      "price": 180
+    },
+    {
+      "id": 23,
+      "name": "Gaming Chair",
+      "category": "furniture",
+      "stock": 6,
+      "price": 250
+    },
+    {
+      "id": 24,
+      "name": "Standing Desk",
+      "category": "furniture",
+      "stock": 5,
+      "price": 400
+    },
+    {
+      "id": 25,
+      "name": "Wooden Desk",
+      "category": "furniture",
+      "stock": 7,
+      "price": 220
+    },
+    {
+      "id": 26,
+      "name": "LED Desk Lamp",
+      "category": "lighting",
+      "stock": 40,
+      "price": 30
+    },
+    {
+      "id": 27,
+      "name": "Smart Lamp",
+      "category": "lighting",
+      "stock": 25,
+      "price": 55
+    },
+    {
+      "id": 28,
+      "name": "USB Hub",
+      "category": "accessories",
+      "stock": 35,
+      "price": 28
+    },
+    {
+      "id": 29,
+      "name": "External SSD 1TB",
+      "category": "storage",
+      "stock": 18,
+      "price": 120
+    },
+    {
+      "id": 30,
+      "name": "External HDD 2TB",
+      "category": "storage",
+      "stock": 22,
+      "price": 95
+    },
+    {
+      "id": 31,
+      "name": "Microphone Blue Yeti",
+      "category": "audio",
+      "stock": 12,
+      "price": 140
+    },
+    {
+      "id": 32,
+      "name": "Webcam Logitech",
+      "category": "video",
+      "stock": 20,
+      "price": 85
+    },
+    {
+      "id": 33,
+      "name": "Tripod Stand",
+      "category": "video",
+      "stock": 25,
+      "price": 35
+    },
+    {
+      "id": 34,
+      "name": "Ring Light",
+      "category": "lighting",
+      "stock": 30,
+      "price": 40
+    },
+    {
+      "id": 35,
+      "name": "Router TP-Link",
+      "category": "network",
+      "stock": 18,
+      "price": 60
+    },
+    {
+      "id": 36,
+      "name": "Router Asus",
+      "category": "network",
+      "stock": 12,
+      "price": 110
+    },
+    {
+      "id": 37,
+      "name": "Network Switch",
+      "category": "network",
+      "stock": 15,
+      "price": 70
+    },
+    {
+      "id": 38,
+      "name": "UPS Power Supply",
+      "category": "power",
+      "stock": 9,
+      "price": 150
+    },
+    {
+      "id": 39,
+      "name": "Surge Protector",
+      "category": "power",
+      "stock": 45,
+      "price": 18
+    },
+    {
+      "id": 40,
+      "name": "Extension Cable",
+      "category": "power",
+      "stock": 50,
+      "price": 14
+    },
+    {
+      "id": 41,
+      "name": "Tablet Samsung",
+      "category": "mobile",
+      "stock": 10,
+      "price": 320
+    },
+    {
+      "id": 42,
+      "name": "iPad 10th Gen",
+      "category": "mobile",
+      "stock": 8,
+      "price": 450
+    },
+    {
+      "id": 43,
+      "name": "Smartphone Xiaomi",
+      "category": "mobile",
+      "stock": 20,
+      "price": 250
+    },
+    {
+      "id": 44,
+      "name": "Smartphone iPhone 13",
+      "category": "mobile",
+      "stock": 6,
+      "price": 750
+    },
+    {
+      "id": 45,
+      "name": "Smartwatch Apple",
+      "category": "wearables",
+      "stock": 12,
+      "price": 399
+    },
+    {
+      "id": 46,
+      "name": "Smartwatch Samsung",
+      "category": "wearables",
+      "stock": 15,
+      "price": 299
+    },
+    {
+      "id": 47,
+      "name": "Fitness Tracker",
+      "category": "wearables",
+      "stock": 28,
+      "price": 60
+    },
+    {
+      "id": 48,
+      "name": "VR Headset",
+      "category": "gaming",
+      "stock": 5,
+      "price": 500
+    },
+    {
+      "id": 49,
+      "name": "Gaming Controller",
+      "category": "gaming",
+      "stock": 20,
+      "price": 70
+    },
+    {
+      "id": 50,
+      "name": "PlayStation 5",
+      "category": "gaming",
+      "stock": 4,
+      "price": 550
+    },
+    {
+      "id": 51,
+      "name": "Xbox Series X",
+      "category": "gaming",
+      "stock": 4,
+      "price": 520
+    },
+    {
+      "id": 52,
+      "name": "Nintendo Switch",
+      "category": "gaming",
+      "stock": 10,
+      "price": 300
+    },
+    {
+      "id": 53,
+      "name": "Cooling Pad Laptop",
+      "category": "accessories",
+      "stock": 18,
+      "price": 35
+    },
+    {
+      "id": 54,
+      "name": "Laptop Bag",
+      "category": "accessories",
+      "stock": 30,
+      "price": 40
+    },
+    {
+      "id": 55,
+      "name": "Backpack Tech",
+      "category": "accessories",
+      "stock": 22,
+      "price": 55
+    },
+    {
+      "id": 56,
+      "name": "Camera Canon",
+      "category": "camera",
+      "stock": 6,
+      "price": 650
+    },
+    {
+      "id": 57,
+      "name": "Camera Sony",
+      "category": "camera",
+      "stock": 5,
+      "price": 720
+    },
+    {
+      "id": 58,
+      "name": "Lens 50mm",
+      "category": "camera",
+      "stock": 12,
+      "price": 200
+    },
+    {
+      "id": 59,
+      "name": "Lens 85mm",
+      "category": "camera",
+      "stock": 8,
+      "price": 350
+    },
+    {
+      "id": 60,
+      "name": "Memory Card 128GB",
+      "category": "storage",
+      "stock": 60,
+      "price": 25
+    }
+  ],
+  "orders": []
 }

@@ -8,6 +8,10 @@ const readDB = async () => {
     return JSON.parse(rawData);
 };
 
+const writeDB = async (data) => {
+    await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
+};
+
 const getAllProducts = async (req, res) => {
     try {
         const data = await readDB();
@@ -153,11 +157,57 @@ const filterByPriceRange = async (req, res) => {
     }
 };
 
+const createProduct = async (req, res) => {
+    try {
+        const db = await readDB();
+        const { name, stock, price, category } = req.body;
+
+        const maxId = db.products.reduce((max, p) => Math.max(max, p.id), 0);
+        const newId = maxId + 1;
+
+        if (typeof name !== 'string' || name.trim() === '') {
+            return res.status(400).json({ error: "Product name is required" });
+        };
+
+        if (stock == null) {
+            return res.status(400).json({ error: "Stock is required" });
+        };
+
+        if (!Number.isInteger(stock) || stock < 0) {
+            return res.status(400).json({ error: "Invalid stock" });
+        };
+
+        if (price != null) {
+            if (!Number.isInteger(price) || price < 0) {
+                return res.status(400).json({ error: "Invalid price" });
+            }
+        }
+
+        const newProduct = {
+            id: newId,
+            name: name.trim(),
+            stock,
+            ...(price != null ? { price } : {}),
+            ...(typeof category === 'string' && category.trim() !== ''
+                ? { category: category.trim().toLowerCase() }
+                : {}),
+        };
+
+        db.products.push(newProduct);
+        await writeDB(db);
+
+        return res.status(201).json(newProduct);
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 module.exports = {
     getAllProducts,
     getProductById,
     getProductByCategory,
     lowStock,
     searchProducts,
-    filterByPriceRange
+    filterByPriceRange,
+    createProduct
 };
