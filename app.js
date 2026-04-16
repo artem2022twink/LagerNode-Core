@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'user', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'user', 'index.html'));
 });
 
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'admin', 'admin.html'));
+    res.sendFile(path.join(__dirname, 'public', 'admin', 'admin.html'));
 });
 
 app.use('/products', productRoutes);
