@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
             navigateTo(PRODUCTS_PATH, {category: selectedCategory});
         });
+    } else {
+        navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_DOM_ELEMENT_NOT_FOUND'});
     };
 
     const getLowStockProductsBtn = document.getElementById('btn-products-get-low-stock');
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         getLowStockProductsBtn.addEventListener('click', () => {
             const threshold = inputStockThreshold.value;
 
-            if (threshold.length === 0) {
+            if (threshold.trim().length === 0) {
                 navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INPUT_IS_REQUIRED'});
                 return;
             };
@@ -86,7 +88,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             navigateTo(PRODUCTS_PATH, {stock: threshold});
         });
+    } else {
+        navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_DOM_ELEMENT_NOT_FOUND'});
     };
 
-    
+    const searchProductsByNameBtn = document.getElementById('btn-products-search');
+    const inputSearchName = document.getElementById('input-search-name');
+
+    if (searchProductsByNameBtn && inputSearchName) {
+        searchProductsByNameBtn.addEventListener('click', () => {
+            const name = inputSearchName.value.trim();
+
+            if (name.length === 0) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INPUT_IS_REQUIRED'});
+                return;
+            };
+        
+            navigateTo(PRODUCTS_PATH, {name: name});
+        });
+    } else {
+        navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_DOM_ELEMENT_NOT_FOUND'});
+    };
+
+
 });
