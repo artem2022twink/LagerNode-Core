@@ -46,5 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
         navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_DOM_ELEMENT_NOT_FOUND'});
     };
 
+    const getProductByCategoryBtn = document.getElementById('btn-products-get-by-category');
+    const selectCategoryRead = document.getElementById('select-category-read');
+
+    if (getProductByCategoryBtn && selectCategoryRead) {
+        getProductByCategoryBtn.addEventListener('click', () => {
+            const selectedCategory = selectCategoryRead.value;
+
+            if (selectedCategory === 'not-selected') {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'CATEGORY_IS_REQUIRE'});
+                return;
+            };
+        
+            navigateTo(PRODUCTS_PATH, {category: selectedCategory});
+        });
+    };
+
     
 });
