@@ -7,7 +7,7 @@ router.post('/', productController.createProduct);
 
 router.get('/', productController.getAllProducts);
 
-router.get('/id/:id', productController.getProductById);
+router.get('/:id', productController.getProductById);
 
 router.get('/category/:category', productController.getProductByCategory);
 
