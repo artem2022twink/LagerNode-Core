@@ -62,5 +62,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const getLowStockProductsBtn = document.getElementById('btn-products-get-low-stock');
+    const inputStockThreshold = document.getElementById('input-stock-threshold');
+
+    if (getLowStockProductsBtn && inputStockThreshold) {
+        getLowStockProductsBtn.addEventListener('click', () => {
+            const threshold = inputStockThreshold.value;
+
+            if (threshold.length === 0) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INPUT_IS_REQUIRED'});
+                return;
+            };
+
+            if (isNaN(threshold)) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INVALID_INPUT_VALUE'});
+                return;
+            };
+
+            if (Number(threshold) <= 0) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_THRESHOLD_MUST_BE_POSITIVE'});
+                return;
+            };
+
+            navigateTo(PRODUCTS_PATH, {stock: threshold});
+        });
+    };
+
     
 });
