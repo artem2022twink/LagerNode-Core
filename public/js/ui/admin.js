@@ -110,5 +110,57 @@ document.addEventListener('DOMContentLoaded', () => {
         navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_DOM_ELEMENT_NOT_FOUND'});
     };
 
+    const filterByPriceRangeBtn = document.getElementById('btn-products-filter-price-range');
+    const inputPriceMin = document.getElementById('input-price-min');
+    const inputPriceMax = document.getElementById('input-price-max');
+    const selectCategoryPrice = document.getElementById('select-category-price');
 
+    if (filterByPriceRangeBtn && inputPriceMax && inputPriceMin) {
+        filterByPriceRangeBtn.addEventListener('click', () => {
+            const min = inputPriceMin.value.trim();
+            const max = inputPriceMax.value.trim();
+            const selectedCategory = selectCategoryPrice.value;
+
+            if (min.length === 0) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_MIN_NUMBER_IS_REQUIRED'});
+                return;
+            };
+
+            if (max.length === 0) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_MAX_NUMBER_IS_REQUIRED'});
+                return;
+            };
+
+            if (isNaN(min)) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INVALID_INPUT_VALUE'});
+                return;
+            };
+
+            if (isNaN(max)) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INVALID_INPUT_VALUE'});
+                return;
+            };
+
+            if (Number(min) < 0) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_MIN_NUMBER_MUST_BE_POSITIVE'});
+                return;
+            };
+
+            if (Number(max) < 1) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_MAX_NUMBER_MUST_BE_POSITIVE'});
+                return;
+            };
+
+            if (Number(max) < Number(min)) {
+                navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_MIN_CANNOT_BE_GREATER_THAN_MAX'});
+                return;
+            };
+
+            if (selectedCategory === 'not-selected') {
+                navigateTo(PRODUCTS_PATH, {min: min, max: max});
+            };
+
+            navigateTo(PRODUCTS_PATH, {min: min, max: max, category: selectedCategory});
+        })
+    }
 });
