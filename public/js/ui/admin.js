@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (id.length === 0) {
                 navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INPUT_IS_REQUIRED'});
                 return;
-            }
+            };
             
             if (isNaN(id)) {
                 navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_INVALID_INPUT_VALUE'});
                 return;
-            }
+            };
 
             if (Number(id) <= 0) {
                 navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_ID_MUST_BE_POSITIVE'});
                 return;
-            }
+            };
 
             navigateTo(PRODUCTS_PATH, {id: id});
         });
@@ -161,6 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             navigateTo(PRODUCTS_PATH, {min: min, max: max, category: selectedCategory});
-        })
-    }
+        });
+    };
 });
