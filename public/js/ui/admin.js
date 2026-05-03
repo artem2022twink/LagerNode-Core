@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (getAllProductsBtn) {
         getAllProductsBtn.addEventListener('click', () => {
-            navigateTo(PRODUCTS_PATH);
+            navigateTo(PRODUCTS_PATH, {getAll: 1});
         });
     } else {
         navigateTo(ERR_PATH, {status: 'Error', message: 'ERR_DOM_ELEMENT_NOT_FOUND'});

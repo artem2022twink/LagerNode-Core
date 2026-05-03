@@ -5,13 +5,14 @@ export const getAllProducts = async () => {
         const res = await fetch(API_BASE);
         
         if (!res.ok) {
-            throw new Error (`Server error: ${res.status}`);
+            throw new Error (JSON.stringify({status: res.status, message: 'DATABASE_ERROR'}));
         }
         
         const data = await res.json();
         return data;
+
     } catch (error) {
-        console.error(`Failed to receive the products:`, error.message);
-        return [];
-    }
-}
+        const errorData = JSON.parse(error.message);
+        return {success: false, errorData: errorData};
+    };
+};
