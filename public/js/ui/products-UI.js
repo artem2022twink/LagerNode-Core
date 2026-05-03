@@ -1,4 +1,4 @@
-import { getAllProducts } from "../api/products.js";
+import { getAllProducts, getProductById } from "../api/products.js";
 
 const ERR_PATH = '/error/error.html'
 const PRODUCTS_PATH = '/user/products.html'
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const min = params.get('min');
     const max = params.get('max');
 
-    if (getAll && getAll === 1) {
+    if (getAll) {
         try {
             const getAllProductsFetch = await getAllProducts();
             
@@ -34,6 +34,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             };
 
             console.log(getAllProductsFetch);
+
+        } catch (error) {
+            console.error('Critical UI Error:', error);
+            navigateTo(ERR_PATH, {status: Critical, message: 'UNEXPECTED_UI_ERROR'});
+        };
+    };
+
+    if (id) {
+        try {
+            const getProductByIdFetch = await getProductById(id)
+
+            if (getProductByIdFetch.success === false) {
+                const errorInfo = getProductByIdFetch.errorData;
+                navigateTo(ERR_PATH, {
+                    status: errorInfo.status || 500,
+                    message: errorInfo.message || 'UNKNOWN_ERROR'
+                });
+                return;
+            };
+
+            console.log(getProductByIdFetch);
 
         } catch (error) {
             console.error('Critical UI Error:', error);
